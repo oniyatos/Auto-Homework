@@ -169,33 +169,150 @@
 		},
 		{
 			"name": "POST /todos (400) doneStatus (10)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Failed Validation: doneStatus should be BOOLEAN\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
-				"method": "GET",
-				"header": []
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n        {\r\n            \"title\": \"process payroll\",\r\n            \"doneStatus\": \"vanlong\",\r\n            \"description\": \"\"\r\n        }"
+				},
+				"url": {
+					"raw": "{{url\n\n}}todos",
+					"host": [
+						"{{url\n\n}}todos"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "POST /todos/{id} (200) (11)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"POST succesfully updated a todo with title is \\\"how to control id\\\"\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"how to control id\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
-				"method": "GET",
-				"header": []
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n            \r\n            \"title\": \"how to control id\"\r\n\r\n        }"
+				},
+				"url": {
+					"raw": "{{url\n\n}}todos/1756",
+					"host": [
+						"{{url\n\n}}todos"
+					],
+					"path": [
+						"1756"
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "DELETE /todos/{id} (200) (12)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful DELETE request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 202]);\r",
+							"});\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
-				"method": "GET",
-				"header": []
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url\n\n}}todos/1766",
+					"host": [
+						"{{url\n\n}}todos"
+					],
+					"path": [
+						"1766"
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "OPTIONS /todos (200) (13)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"API allow GET, HEAD, POST, OPTION\", function () {\r",
+							"    var responseHeaders= pm.response.headers.all();\r",
+							"    var allowMethods = Object.values(responseHeaders[2])\r",
+							"pm.expect(allowMethods[1]).to.include(\"OPTIONS, GET, HEAD, POST\")\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
-				"method": "GET",
-				"header": []
+				"method": "OPTIONS",
+				"header": [],
+				"url": {
+					"raw": "{{url\n\n}}todos",
+					"host": [
+						"{{url\n\n}}todos"
+					]
+				}
 			},
 			"response": []
 		}
