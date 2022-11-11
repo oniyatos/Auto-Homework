@@ -8,6 +8,19 @@
 	"item": [
 		{
 			"name": "GET /todo (404) not plural (4)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -24,9 +37,9 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}todos",
+					"raw": "{{url}}todo",
 					"host": [
-						"{{url}}todos"
+						"{{url}}todo"
 					]
 				}
 			},
@@ -45,15 +58,24 @@
 						],
 						"type": "text/javascript"
 					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
 				}
 			],
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url\n\n}}todos",
+					"raw": "{{url}}todos",
 					"host": [
-						"{{url\n\n}}todos"
+						"{{url}}todos"
 					]
 				}
 			},
@@ -78,9 +100,9 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url\n\n}}todos/100",
+					"raw": "{{url}}todos/100",
 					"host": [
-						"{{url\n\n}}todos"
+						"{{url}}todos"
 					],
 					"path": [
 						"100"
@@ -108,9 +130,9 @@
 				"method": "HEAD",
 				"header": [],
 				"url": {
-					"raw": "{{url\n\n}}todos",
+					"raw": "{{url}}todos",
 					"host": [
-						"{{url\n\n}}todos"
+						"{{url}}todos"
 					]
 				}
 			},
@@ -139,9 +161,9 @@
 					"raw": "{\r\n            \"title\": \"file paperwork\",\r\n            \"doneStatus\": true,\r\n            \"description\": \"\"\r\n        }"
 				},
 				"url": {
-					"raw": "{{url\n\n}}todos",
+					"raw": "{{url}}todos",
 					"host": [
-						"{{url\n\n}}todos"
+						"{{url}}todos"
 					]
 				}
 			},
@@ -153,9 +175,9 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url\n\n}}todos?doneStatus=true",
+					"raw": "{{url}}todos?doneStatus=true",
 					"host": [
-						"{{url\n\n}}todos"
+						"{{url}}todos"
 					],
 					"query": [
 						{
@@ -193,9 +215,9 @@
 					"raw": "\r\n        {\r\n            \"title\": \"process payroll\",\r\n            \"doneStatus\": \"vanlong\",\r\n            \"description\": \"\"\r\n        }"
 				},
 				"url": {
-					"raw": "{{url\n\n}}todos",
+					"raw": "{{url}}todos",
 					"host": [
-						"{{url\n\n}}todos"
+						"{{url}}todos"
 					],
 					"query": [
 						{
@@ -235,9 +257,9 @@
 					"raw": "{\r\n            \r\n            \"title\": \"how to control id\"\r\n\r\n        }"
 				},
 				"url": {
-					"raw": "{{url\n\n}}todos/1756",
+					"raw": "{{url}}todos/1756",
 					"host": [
-						"{{url\n\n}}todos"
+						"{{url}}todos"
 					],
 					"path": [
 						"1756"
@@ -272,9 +294,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{url\n\n}}todos/1766",
+					"raw": "{{url}}todos/1766",
 					"host": [
-						"{{url\n\n}}todos"
+						"{{url}}todos"
 					],
 					"path": [
 						"1766"
@@ -308,9 +330,9 @@
 				"method": "OPTIONS",
 				"header": [],
 				"url": {
-					"raw": "{{url\n\n}}todos",
+					"raw": "{{url}}todos",
 					"host": [
-						"{{url\n\n}}todos"
+						"{{url}}todos"
 					]
 				}
 			},
